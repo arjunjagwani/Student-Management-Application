@@ -27,7 +27,12 @@
             <td th:text="${student.first_name}"></td>
             <td th:text="${student.last_name}"></td>
             <td th:text="${student.email}"></td>
-            <td ></td>
+            <td >
+                <div>
+                    <a th:href="@{/{id}/delete(id=${student.id})}" class="btn btn-outline-danger btn-sm">Delete</a>
+                </div>
+
+            </td>
 
         </tr>
         </tbody>

@@ -5,10 +5,7 @@ import com.basic.projects.StudentManagementApp.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,7 +14,7 @@ public class StudentController {
     @Autowired
     StudentService studentService;
 
-    @GetMapping
+    @GetMapping("/")
     public String getStudents(Model model){
         model.addAttribute("Students",studentService.getAllStudents());
         return "Students";
@@ -31,12 +28,17 @@ public class StudentController {
 
     }
 
-    @PostMapping("/")
+    @PostMapping("/addStudent")
     public String addStudents(@RequestParam String first_name,@RequestParam String last_name,@RequestParam String email){
 
         studentService.addNewStudent(first_name, last_name, email);
         return "redirect:/";
 
+    }
+    @GetMapping("/{id}/delete")
+    public String deleteStudent(@PathVariable Long id){
+        studentService.deleteStudent(id);
+        return "redirect:/";
     }
 
 //    @PostMapping
