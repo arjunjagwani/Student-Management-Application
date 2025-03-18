@@ -29,4 +29,21 @@ public class StudentService {
     studentRepository.deleteById(id);
 
     }
+
+    public void updateStudent(Long id, Student updatedStudent) {
+        Student student = studentRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid student id"));
+
+        student.setFirst_name(updatedStudent.getFirst_name());
+        student.setLast_name(updatedStudent.getLast_name());
+        student.setEmail(updatedStudent.getEmail());
+
+        studentRepository.save(student);
+    }
+
+
+    public Student getStudentById(Long id) {
+        return studentRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid student ID"));
+    }
 }

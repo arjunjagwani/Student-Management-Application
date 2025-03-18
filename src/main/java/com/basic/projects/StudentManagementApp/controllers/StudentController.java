@@ -40,6 +40,20 @@ public class StudentController {
         studentService.deleteStudent(id);
         return "redirect:/";
     }
+    @GetMapping("/updateForm/{id}")
+    public String studentUpdateForm(@PathVariable Long id, Model model) {
+        Student student = studentService.getStudentById(id);
+        model.addAttribute("student", student);
+        return "student-update-form";
+    }
+
+    @PostMapping("/{id}/update")
+    public String updateStudent(@PathVariable Long id,@ModelAttribute Student student){
+        studentService.updateStudent(id, student);
+        return "redirect:/";
+    }
+
+
 
 //    @PostMapping
 //    public String addStudents(@RequestBody Student student){

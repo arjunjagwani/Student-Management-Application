@@ -29,6 +29,7 @@
             <td th:text="${student.email}"></td>
             <td >
                 <div>
+                    <a th:href="@{/updateForm/{id}(id=${student.id})}" class="btn btn-outline-primary btn-sm">Update</a>
                     <a th:href="@{/{id}/delete(id=${student.id})}" class="btn btn-outline-danger btn-sm">Delete</a>
                 </div>
 
